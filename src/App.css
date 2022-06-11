@@ -23,16 +23,24 @@
 .casilla {
   padding: 2rem;
   text-align: center;
-  /* background-color: azure; */
-  /* border: solid 1px aliceblue; */
+  background-color: azure;
+  border: solid 1px aliceblue;
   cursor: pointer;
 }
 
-/* .casilla:hover {
+.casilla:hover {
   background-color: rgb(137, 137, 242);
-} */
+}
 
 .reset {
+  display: flex;
+  justify-content: center;
+}
+
+.winner {
+  background-color: aquamarine;
+  margin: 1rem;
+  padding: 1rem;
   display: flex;
   justify-content: center;
 }

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import './App.css';
 
 const arrayInit = ["", "", "", "", "", "", "", "", ""]
@@ -8,6 +8,7 @@ function App() {
 
   const [mark, setMark] = useState(arrayInit)
   const [xo, setxo] = useState(xoInit)
+  const [finish, setFinish] = useState(false)
 
   const winCombinatios = [
     [0, 1, 2],
@@ -25,6 +26,7 @@ function App() {
     if (array[item]) {
       return;
     } else {
+
       if (xo === "x") setxo("o")
       else setxo("x")
 
@@ -48,26 +50,19 @@ function App() {
       x = arr.indexOf(item, x + 1);
     }
 
-    // winCombinatios.forEach(element => {
+    winCombinatios.forEach(element => {
 
-    //   console.log(indices[0]);
-    //   const i = element[0]
-    //   const j = element[1]
-    //   const k = element[2]
+      if (arr[element[0]] && mark[element[0]] === arr[element[1]] && arr[element[0]] === arr[element[2]]) {
+        setFinish(true)
+        return xo;
+      }
 
-    //   // console.log(indices[i]);
-
-    //   // if (indices[i] && indices[i] === indices[j] && indices[i] === indices[k]) {
-    //   //   console.log(xo);
-    //   // }
-
-    // });
-    // return console.log("nada");
+    });
   }
 
-  useEffect(() => {
+  // useEffect(() => {
 
-  }, [])
+  // }, [])
 
   return (
     <div className="App">
@@ -77,22 +72,24 @@ function App() {
       <div className="main">
         <div></div>
         <div className="game">
-          <button className="casilla casilla1" onClick={() => ping(0)} > {mark[0]} </button>
-          <button className="casilla casilla2" onClick={() => ping(1)} > {mark[1]} </button>
-          <button className="casilla casilla3" onClick={() => ping(2)} > {mark[2]} </button>
-          <button className="casilla casilla9" onClick={() => ping(3)} > {mark[3]} </button>
-          <button className="casilla casilla4" onClick={() => ping(4)} > {mark[4]} </button>
-          <button className="casilla casilla5" onClick={() => ping(5)} > {mark[5]} </button>
-          <button className="casilla casilla6" onClick={() => ping(6)} > {mark[6]} </button>
-          <button className="casilla casilla7" onClick={() => ping(7)} > {mark[7]} </button>
-          <button className="casilla casilla8" onClick={() => ping(8)} > {mark[8]} </button>
-
+          <button className="casilla" onClick={() => ping(0)} > {mark[0]} </button>
+          <button className="casilla" onClick={() => ping(1)} > {mark[1]} </button>
+          <button className="casilla" onClick={() => ping(2)} > {mark[2]} </button>
+          <button className="casilla" onClick={() => ping(3)} > {mark[3]} </button>
+          <button className="casilla" onClick={() => ping(4)} > {mark[4]} </button>
+          <button className="casilla" onClick={() => ping(5)} > {mark[5]} </button>
+          <button className="casilla" onClick={() => ping(6)} > {mark[6]} </button>
+          <button className="casilla" onClick={() => ping(7)} > {mark[7]} </button>
+          <button className="casilla" onClick={() => ping(8)} > {mark[8]} </button>
         </div>
         <div></div>
       </div>
       <div className='reset' >
         <button className='btn-reset' onClick={reset} >Reset</button>
       </div>
+      {
+        finish ? <div className='winner' >Winner</div> : <div></div>
+      }
     </div >
   );
 }
