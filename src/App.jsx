@@ -60,10 +60,6 @@ function App() {
     });
   }
 
-  // useEffect(() => {
-
-  // }, [])
-
   return (
     <div className="App">
       <div className='header' >
